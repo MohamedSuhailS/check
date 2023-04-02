@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 function Home() {
   const [foods,setfoods] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3000/foods')
+    axios.get('https://stocks-ocih.onrender.com/foods')
     .then(function (response) {
       setfoods(response.data)
       console.log(response.data);
