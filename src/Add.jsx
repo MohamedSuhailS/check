@@ -11,7 +11,7 @@ export const Add = () => {
         message:form.current.message.value
     }
     console.log(data)
-    axios.post('http://localhost:3000/food', data)
+    axios.post('https://stocks-ocih.onrender.com/food', data)
       .then(function (response) {
         console.log(response);
       })
