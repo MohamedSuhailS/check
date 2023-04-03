@@ -8,7 +8,7 @@ const Img = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
       axios
-        .get("http://localhost:3000/img")
+        .get("https://imgserver.onrender.com/img")
         .then((res) => setData(res.data))
         .catch((err) => console.log(err, "it has an error"));
     });
@@ -44,7 +44,7 @@ const Img = () => {
       }
     }
 
-    const res = await axios.post("http://localhost:3000/img", formData, config);
+    const res = await axios.post("https://imgserver.onrender.com/img", formData, config);
 
     if (res.data.status === 401 || !res.data) {
       console.log("errror")
