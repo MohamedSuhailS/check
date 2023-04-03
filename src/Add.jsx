@@ -1,25 +1,50 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 export const Add = () => {
     const form = useRef();
   
-    const sendEmail = (e) => {
-      e.preventDefault();
-    let data = {
-        name:form.current.name.value,
-        email:form.current.email.value,
-        message:form.current.message.value
-    }
-    console.log(data)
-    axios.post('https://stocks-ocih.onrender.com/food', data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
+    const [userInfo, setuserInfo] = useState({
+      file:[],
+      filepreview:null,
+     });
+
+  
+    const handleInputChange = (event) => {
+      setuserInfo({
+        ...userInfo,
+        file:event.target.files[0],
+        filepreview:URL.createObjectURL(event.target.files[0]),
       });
-      alert("Added successfully")
-      window.location.reload();
+  
+    }
+    const sendEmail = async(e) => {
+      const formdata = new FormData(); 
+      formdata.append('avatar', userInfo.file);
+      alert(userInfo.file.name)
+      axios.post("http://localhost:3000/imageupload", formdata,{   
+        headers: { "Content-Type": "multipart/form-data" } 
+})
+.then(res => { // then print response status
+  console.warn(res);
+  if(res.data.success === 1){
+   alert("Image upload successfully");
+  }})
+    //   e.preventDefault();
+    // let data = {
+    //     name:form.current.name.value,
+    //     email:form.current.email.value,
+    //     message:form.current.message.value
+    // }
+    // console.log(data)
+    // axios.post('http://localhost:3000/food', data)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    //   alert("Added successfully")
+    //   window.location.reload();
     };
   
     return (
@@ -99,10 +124,16 @@ export const Add = () => {
     <label for="exampleFormControlTextarea1">Message</label>
     <textarea class="form-control" name="message"  rows="3"></textarea>
   </div>
+  <div className="form-row">
+          <label className="text-white">Select Image :</label>
+          <input type="file" className="form-control" name="upload_file"  onChange={handleInputChange} />
+        </div>
   <input type="submit" value="Send" className='btn btn-primary mt-3' />
 </form>
+<img width={200} className="previewimg"  src={userInfo.filepreview} alt="UploadImage" />
       </div>
-      </div></div></main>
+      </div></div>
+      </main>
       </div>
     );
   };
