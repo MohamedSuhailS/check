@@ -8,7 +8,6 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import { Add } from './Add';
 import { Edit } from './Edit';
 import Img from './Img';
-import Imgview from './Imgview';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -18,7 +17,6 @@ root.render(
      <Route path="/" element={<Home />}></Route>
      <Route path="/add" element={<Add />}></Route>
      <Route path="/img" element={<Img />}></Route>
-     <Route path="/imgs" element={<Imgview />}></Route>
      <Route exact path="/edit/:id" element={< Edit />}></Route>
    </Routes>
  </BrowserRouter>
