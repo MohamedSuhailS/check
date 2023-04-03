@@ -21,7 +21,7 @@ export const Add = () => {
       const formdata = new FormData(); 
       formdata.append('avatar', userInfo.file);
       alert(userInfo.file.name)
-      axios.post("http://localhost:3000/imageupload", formdata,{   
+      axios.post("https://stocks-ocih.onrender.com/imageupload", formdata,{   
         headers: { "Content-Type": "multipart/form-data" } 
 })
 .then(res => { // then print response status
