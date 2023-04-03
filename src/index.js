@@ -6,6 +6,7 @@ import Home from './Home';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Route,Routes } from 'react-router-dom';
 import { Add } from './Add';
+import { Edit } from './Edit';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ root.render(
      <Route path="/new" element={<Home />}></Route>
      <Route path="/" element={<Home />}></Route>
      <Route path="/add" element={<Add />}></Route>
+     <Route exact path="/edit/:id" element={< Edit />}></Route>
    </Routes>
  </BrowserRouter>
 </React.StrictMode>
